@@ -1,0 +1,40 @@
+Model - Bio, User, Product, Category, Order 
+Bio Table - 
+Fillables - first_name, last_name, username, email, contact_address, shipping_adress, phone_number
+
+User Table -
+Fillables - email/username, password
+Hidden - password, token
+
+Product Table -
+Fillables - name, price, description, image, available_quantity
+
+Category Table -
+Fillables - name fields
+
+Relationships  -
+User hasMany(Product::class)
+User hasMany(Order::class)
+Order belongsTo(User::class)
+User belongsTo(Bio::class)
+Product belongsTo(User::class)
+Category hasMany(Product::class)
+Product belongsToMany(Category::class)
+
+Fillables for User table - first_name, last_name, username, email, contact_address, shipping_adress, phone_number
+Controllers - UserController, ProductController, CategoryController, OrderController
+
+Methods -
+UserController - register, autenticate, getRole
+ProductController - index, show, store, update, delete
+CategoryController - index, show, store, update, delete
+OrderController - index, show, store, update, delete
+(N.B - other optional methods would be added as the application grows)
+
+Routes - 
+Route::get('/products', 'ProductController@index');
+Route::get('test', 'ProductController@index')
+Route::get('products/{id}', ProductController@show');
+Route::post('products', 'ProductController@store');
+Route::put('products/{product}', 'ProductController@update');
+Route::delete('products/{product}', 'ProductController@delete']);
